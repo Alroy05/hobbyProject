@@ -24,7 +24,7 @@ export default async function handler(req, res) {
   //   console.log(process.env.PINECONE_INDEX);
   // Always use a try catch block to do asynchronous requests and catch any errors
   try {
-    const loader = new DirectoryLoader("/home/alroy/pblProject/roboHR/data/resumes", {
+    const loader = new DirectoryLoader("/home/alroy/SIH-Project/data/resumes", {
       ".pdf":(path) => new PDFLoader(path, '/pdf')
     })
 
@@ -57,7 +57,7 @@ export default async function handler(req, res) {
         ...doc,
         metadata: {
           first_name: firstName,
-          last_name: lastName.slice(0, -4),
+          last_name: lastName,
           docType: "resume",
         },
       };
@@ -66,7 +66,7 @@ export default async function handler(req, res) {
     // console.log(reducedDocs[4]);
 
     let summaries = [];
-    const model = new OpenAI({ temperature: 0 });
+    const model = new OpenAI({ temperature: 0.5 });
     const summarizeAllChain = loadSummarizationChain(model, {
       type: "map_reduce",
     });

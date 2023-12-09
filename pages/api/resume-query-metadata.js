@@ -39,7 +39,7 @@ export default async function handler(req, res) {
 
     // Prompt Template
     const promptTemplate = new PromptTemplate({
-      template: `Assume you are a Human Resources Director. According to the resumes, answer this question: {question}`,
+      template: `Assume you are an advocate. According to the dataset, answer this question: {question}`,
       inputVariables: ["question"],
     });
 
